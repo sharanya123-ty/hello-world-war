@@ -1,2 +1,1 @@
-touch 1  < ls -lt
-$1 
+mvn clean package
