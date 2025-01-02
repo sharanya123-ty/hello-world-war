@@ -1,15 +1,24 @@
 pipeline {
    agent { label 'slave1'}  //slave1 = label name
     stages {
-                stage('Example1') {
+                stage('checkout') {
+                   sh 'git checkout https://github.com/sharanya123-ty/hello-world-war/'
+                   
           steps {
                 echo 'Hello World'
             }
         }
-        stage('Example2') {
+        stage('Build') {
+           sh 'mvn clean package'
           steps {
                 echo 'Hello World'
             }
+       stage('Deployment')
+           sh '
+           post {
+        always {
+            emailext body: 'Hello sainath kadaverugu', recipientProviders: [$class: 'DevelopersRecipientProvider'], subject: 'After build message'
+        }
         }
     }
 }
