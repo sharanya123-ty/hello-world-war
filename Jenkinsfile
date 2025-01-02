@@ -14,11 +14,7 @@ pipeline {
                 echo 'Hello World'
             }
        stage('Deployment')
-         
-           post {
-        always {
-            emailext body: 'Hello sainath kadaverugu', recipientProviders: [$class: 'DevelopersRecipientProvider'], subject: 'After build message'
-        }
+                    
         }
     }
 }
