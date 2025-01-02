@@ -1,20 +1,23 @@
 pipeline {
-   agent { label 'slave1'}  //slave1 = label name
-    stages {
-                stage('checkout') {
-                   sh 'git checkout https://github.com/sharanya123-ty/hello-world-war/'
-                   
-          steps {
-                echo 'Hello World'
+    parameters {
+        string(name: 'cmd', defaultValue: 'package', description: 'Who should I say hello to?')
+
+        choice(name: 'ch', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+    }
+    agent any
+       stages 
+    {
+        stage('checkout') {        
+                        steps {
+                            sh 'rm -rf hello-world-war'
+                sh 'git clone https://github.com/sharanya123-ty/hello-world-war/'
             }
         }
-        stage('Build') {
-           sh 'mvn clean package'
-          steps {
-                echo 'Hello World'
+         stage('build') { 
+            steps {
+                sh 'cd hello-world-war'
+                sh 'mvn clean $cmd'
             }
-       stage('Deployment')
-                    
         }
     }
 }
