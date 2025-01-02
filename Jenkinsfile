@@ -18,8 +18,7 @@ pipeline {
              sh 'cp /opt/Jenkins/workspace/pipeline_job001/target/hello-world-war-1.0.0.war /opt/apache-tomcat-10.1.34/webapps/'
                }
           }
-            }
-post {
+            post {
     success {
         mail to: "sharavin422@gmail.com",
              subject: "Jenkins Job Success",
@@ -30,6 +29,6 @@ post {
              subject: "Jenkins Job Failed",
              body: "The Jenkins job failed. Check the logs for details."
     }
-}
+
 }
     
