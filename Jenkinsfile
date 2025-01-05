@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'slave1' }
     //tools {
      //   maven 'Maven-3.4.0' // Specify your Maven version if using Maven
      //   jdk 'JDK11'         // Specify your JDK version
