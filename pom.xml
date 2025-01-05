@@ -23,7 +23,18 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.4.0</version>
 			</plugin>
-		</plugins>
+		        <plugin>
+                                <groupId>org.sonarsource.scanner.maven</groupId>
+		                <artifactId>sonar-maven-plugin</artifactId>
+		                <version>4.0.0.4121</version> <!-- Or another compatible version -->
+		        </plugin>	
+		
+		</plugins>	
 	</build>
-
+          <!---add your own sonar account details -->
+	    <properties>
+	    <sonar.projectKey>sharanya123-ty_hello-world-war</sonar.projectKey>
+	    <sonar.organization>sharanya123-ty</sonar.organization>
+	    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	   </properties>
 </project>
