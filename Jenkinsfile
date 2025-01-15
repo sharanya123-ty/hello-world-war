@@ -20,7 +20,7 @@ pipeline {
                             cd .. && pwd
                             cd bin/
                             ./shutdown.sh || true
-                            sleep 3  # You can replace this with a more robust check if needed
+                            sleep 10  # You can replace this with a more robust check if needed
                             ./startup.sh
                         """
                     }
