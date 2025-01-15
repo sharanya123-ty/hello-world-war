@@ -6,20 +6,19 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Build, Deploy, and Upload Artifacts
+name: Java CI maven build
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - master
-  workflow_dispatch:
+    branches: [ "master" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
       # Checkout the repository
       - name: Checkout Code
@@ -29,19 +28,24 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
 
-      # Cache Maven dependencies
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: 
+
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings>
+                  <servers>
+                    <server>
+                      <id>hello-world-war</id>
+                      <username>${{ secrets.ARTIFACTORY_USERNAME }}</username>
+                      <password>${{ secrets.ARTIFACTORY_API_KEY }}</password>
+                    </server>
+                  </servers>
+                </settings>" > ~/.m2/settings.xml
+        
           
       # Build the project with Maven
       - name: Build with Maven
-        run: mvn clean install
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+        run: mvn clean deploy
