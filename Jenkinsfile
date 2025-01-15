@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'slave' }
     environment {
         ARTIFACT_URL = 'http://3.110.105.203:8082/artifactory/hello-world-war-libs-release/com/efsavage/hello-world-war/1.0.1/hello-world-war-1.0.1.war'
         TOMCAT_PATH = '/opt/apache-tomcat-10.1.34'
@@ -19,7 +19,7 @@ pipeline {
                     pwd
                     cd bin/
                     ./shutdown.sh
-                    sleep 10
+                    sleep 3
                     ./startup.sh
                     """
                 }
