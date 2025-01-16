@@ -36,7 +36,7 @@ jobs:
 
       - name: uploading the artifact
         run: |
-          curl -u admin:cmVmdGtuOjAxOjE3Njg1NjIwMjY6SzY0cXpONlFrT3ZkbXB2SnlnNFRlR2pYcWZj -T /home/ubuntu/.m2/repository/com/efsavage/hello-world-war/1.0.33/hello-world-war-1.0.33.war  "http://13.233.63.154:8082/artifactory/hello_world_1-libs-release/com/efsavage/hello-world-war/"
+          curl -u admin:cmVmdGtuOjAxOjE3Njg0ODI2MDE6ZmlVTFhuUlBlNDNSUHJ5YlppVkRudFBpcTd2 -T /home/ubuntu/.m2/repository/com/efsavage/hello-world-war/1.0.33/hello-world-war-1.0.33.war  "http://13.233.63.154:8082/artifactory/hello_world_1-libs-release/com/efsavage/hello-world-war/"
 
   deploy:
 
@@ -56,6 +56,6 @@ jobs:
           echo "Deployoing the script"
           sudo chown -R ubuntu:ubuntu /opt
           cd /opt/apache-tomcat-10.1.34/webapps/
-          curl -L -u "admin:cmVmdGtuOjAxOjE3Njg0OTk0NzA6eDk4cDRHTHVTQnFncVJQcjQxWHRYYlg4TmJV" -O "http://13.233.63.154:8082/artifactory/hello_world_1-libs-release/com/efsavage/hello-world-war/hello-world-war-1.0.33.war"
+          curl -L -u "admin:cmVmdGtuOjAxOjE3Njg0ODI2MDE6ZmlVTFhuUlBlNDNSUHJ5YlppVkRudFBpcTd2" -O "http://13.233.63.154:8082/artifactory/hello_world_1-libs-release/com/efsavage/hello-world-war/hello-world-war-1.0.33.war"
 
        
